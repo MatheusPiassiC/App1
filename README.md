@@ -1,0 +1,1 @@
+#Este é um app de estudo, pretendo aprimorar suas funcionalidades para ser um gerador de sequências de acorde, mas por hora é apenas um gerador de senhas com tela de login, usando AsyncStorage(não criptografado).
