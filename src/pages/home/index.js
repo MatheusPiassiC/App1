@@ -2,6 +2,7 @@ import { useState } from "react"
 import { View, Text, StyleSheet, Image, TouchableOpacity, Modal} from "react-native"
 import Slider from "@react-native-community/slider"
 import { ModalPassword } from "../../components/index"
+import CarouselComponent from "./carrossel"
 
 let charset = "zxcvbnmasdfghjklqwertyuiopZXCVBNMASDFGHJKQWERTYUIOP1234567890"
 
@@ -9,6 +10,14 @@ export function Home(){
 	const [size, setSize]=useState(10)
 	const [passwordValue, setPasswordValue] = useState("")
 	const [modalVisible, setModalVisible] = useState(false);
+
+    const carouselImages = [
+        "https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg",
+        "https://images.pexels.com/photos/1556691/pexels-photo-1556691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        //"https://example.com/image3.jpg",
+        // Adicione mais URLs de imagens conforme necessário
+        
+    ];
 
 	function generatePassword(){
 		
@@ -26,10 +35,11 @@ export function Home(){
 
 	return(
 		<View style={styles.container}> 
-			<Image
+			{/*<Image
 			    source={require("../../assets/icon6.png")}
 				style={styles.logo}
-			/>
+			/>*/}
+            <CarouselComponent style={styles.carrossel} images={carouselImages} />
 			<Text style={styles.title}>{size} caracteres</Text>
 			<View style={styles.area}>
 				<Slider
@@ -92,6 +102,9 @@ const styles = StyleSheet.create({
 	buttonText:{
 		color: "#FFF",
 		fontSize: 20,
-	}
+	},
+    carrossel:{
+        layout: 'tinder'
+    }
 
 })
