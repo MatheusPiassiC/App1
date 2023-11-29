@@ -1,7 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const authService = {
+  users: [],
+  authenticate: async (email, password) => {
+    const user = authService.users.find((u) => u.email === email && u.password === password);
+    return user
+      ? { success: true, token: 'fakeAuthToken' }
+      : { success: false, message: 'Credenciais inválidas' };
+  },
+  register: async (email, password) => {
+    const existingUser = authService.users.find((u) => u.email === email);
+
+    if (existingUser) {
+      return { success: false, message: 'Este email já está cadastrado.' };
+    }
+
+    const newUser = { email, password };
+    authService.users.push(newUser);
+    
+    return { success: true, message: 'Usuário cadastrado com sucesso!' };
+  },
+};
 
 export function Login() {
   const navigation = useNavigation();
@@ -10,18 +31,16 @@ export function Login() {
 
   const handleLogin = async () => {
     try {
-      const users = await AsyncStorage.getItem('users');
-      const parsedUsers = JSON.parse(users) || [];
+      const result = await authService.authenticate(email, password);
 
-      const user = parsedUsers.find((u) => u.email === email && u.password === password);
-
-      if (user) {
-        // Usuário autenticado, salva o token e redireciona para a tela principal
-        await AsyncStorage.setItem('userToken', 'token_do_usuario');
+      if (result.success) {
+        // Usuário autenticado com sucesso, salva o token e redireciona para a tela principal
+        // Aqui você pode substituir a lógica de salvar o token por AsyncStorage ou outra solução de sua escolha
+        Alert.alert('Sucesso', 'Usuário autenticado com sucesso!');
         navigation.navigate('hometabs');
       } else {
         // Usuário não autenticado
-        Alert.alert('Erro', 'Credenciais inválidas. Tente novamente.');
+        Alert.alert('Erro', result.message);
       }
     } catch (error) {
       console.error('Erro durante o login:', error);
@@ -31,28 +50,25 @@ export function Login() {
 
   const handleRegister = async () => {
     try {
-      const users = await AsyncStorage.getItem('users');
-      const parsedUsers = JSON.parse(users) || [];
+      const result = await authService.register(email, password);
 
-      // Verifica se o usuário já existe
-      if (parsedUsers.some((u) => u.email === email)) {
-        Alert.alert('Erro', 'Este email já está cadastrado.');
-      } else {
-        // Cadastra o novo usuário
-        const newUser = { email, password };
-        parsedUsers.push(newUser);
-        await AsyncStorage.setItem('users', JSON.stringify(parsedUsers));
-
-        // Simula o login do novo usuário
-        await AsyncStorage.setItem('userToken', 'token_do_usuario');
-        Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
+      if (result.success) {
+        // Usuário registrado com sucesso
+        Alert.alert('Sucesso', result.message);
         navigation.navigate('hometabs');
+      } else {
+        // Falha no registro
+        Alert.alert('Erro', result.message);
       }
     } catch (error) {
       console.error('Erro durante o cadastro:', error);
       Alert.alert('Erro', 'Ocorreu um erro durante o cadastro. Tente novamente.');
     }
   };
+
+  // ... o restante do seu código permanece o mesmo
+
+
 
   return (
     <View style={styles.container}>
@@ -61,9 +77,9 @@ export function Login() {
       </View>
 
       <View style={styles.containerForm}>
-        <Text style={styles.title}>Email</Text>
+        <Text style={styles.title}>Usuário</Text>
         <TextInput
-          placeholder='Digite um email'
+          placeholder='Digite o nome do usuário'
           style={styles.input}
           value={email}
           onChangeText={(text) => setEmail(text)}
@@ -94,7 +110,7 @@ export function Login() {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: "#392de9",
+        backgroundColor: "#780c02",
     },    
     containerHeader:{
         marginTop: '14%',
@@ -126,7 +142,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     button:{
-        backgroundColor: "#392de9",
+        backgroundColor: "#780c02",
         width: '100%',
         borderRadius: 4,
         paddingVertical: 8,

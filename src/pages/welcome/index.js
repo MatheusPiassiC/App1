@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     containerForm:{
         flex: 1,
-        backgroundColor: "#392de9",
+        backgroundColor: "#780c02",
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
         paddingStart: '5%',
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 28,
         marginBottom: 12,
+        color: 'white',
     },
     text:{
         color: '#a1a1a1'

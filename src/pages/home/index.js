@@ -14,7 +14,8 @@ export function Home(){
     const carouselImages = [
         "https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg",
         "https://images.pexels.com/photos/1556691/pexels-photo-1556691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        //"https://example.com/image3.jpg",
+        "https://cdn.pixabay.com/photo/2017/04/09/16/11/guitar-2216068_1280.jpg"
+		//"https://example.com/image3.jpg",
         // Adicione mais URLs de imagens conforme necessário
         
     ];
@@ -39,7 +40,7 @@ export function Home(){
 			    source={require("../../assets/icon6.png")}
 				style={styles.logo}
 			/>*/}
-            <CarouselComponent style={styles.carrossel} images={carouselImages} />
+            <CarouselComponent  images={carouselImages} />
 			<Text style={styles.title}>{size} caracteres</Text>
 			<View style={styles.area}>
 				<Slider
@@ -55,7 +56,7 @@ export function Home(){
 
 			</View>
 			<TouchableOpacity style={styles.button} onPress={generatePassword}>
-				<Text style={styles.buttonText}>Gerar Nota</Text>
+				<Text style={styles.buttonText}>Gerar Senha</Text>
 			</TouchableOpacity>
 
 			<Modal visible={modalVisible} animationType="fade" transparent={true}>
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
 
 	},
 	button:{
-		backgroundColor: "#392de9",
+		backgroundColor: "#780c02",
 		width: "70%",
 		height: 50,
 		alignItems: 'center',
@@ -103,8 +104,5 @@ const styles = StyleSheet.create({
 		color: "#FFF",
 		fontSize: 20,
 	},
-    carrossel:{
-        layout: 'tinder'
-    }
 
 })
