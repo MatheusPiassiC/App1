@@ -2,7 +2,7 @@ import { useIsFocused } from "@react-navigation/native"
 import { useState, useEffect } from "react"
 import { View, Text, StyleSheet, FlatList } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import useStorage from "../../hooks/UseStorage"
+import useStorage from "../hooks/UseStorage"
 
 import { PasswordItem } from "./components/passwordItem"
 

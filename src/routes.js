@@ -18,7 +18,7 @@ const HomeTabs = () => {
         name="home"
         component={Home}
         options={{
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
           headerShown: false,
           tabBarIcon: ({ focused, size, color }) => {
             return focused ? (
@@ -34,7 +34,7 @@ const HomeTabs = () => {
         name="passwords"
         component={Passwords}
         options={{
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
           headerShown: false,
           tabBarIcon: ({ focused, size, color }) => {
             return focused ? (

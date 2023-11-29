@@ -17,7 +17,7 @@ export default function CarouselComponent({ images }) {
       sliderWidth={350}
       itemWidth={350}
       loop
-      layout="tinder"
+      layout="default"
     />
   );
 }

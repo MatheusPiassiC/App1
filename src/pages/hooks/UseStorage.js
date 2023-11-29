@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-
 const useStorage = () =>{
     //buscar os itens
     const getItem = async(key)=>{
@@ -36,7 +35,7 @@ const useStorage = () =>{
                 return (password !== item)
             })
 
-            await AsyncStorage.setItem(key, JSON. stringify(myPasswords))
+            await AsyncStorage.setItem(key, JSON.stringify(myPasswords))
             return myPasswords;
         }catch(error){
             console.log("ERRO AO DELETAR", error)

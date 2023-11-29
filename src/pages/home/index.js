@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { View, Text, StyleSheet, Image, TouchableOpacity, Modal} from "react-native"
+import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity, Modal} from "react-native"
 import Slider from "@react-native-community/slider"
-import { ModalPassword } from "../../components/index"
+import { ModalPassword } from "./components/index"
 import CarouselComponent from "./carrossel"
 
 let charset = "zxcvbnmasdfghjklqwertyuiopZXCVBNMASDFGHJKQWERTYUIOP1234567890"
@@ -15,7 +15,6 @@ export function Home(){
         "https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg",
         "https://images.pexels.com/photos/1556691/pexels-photo-1556691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "https://cdn.pixabay.com/photo/2017/04/09/16/11/guitar-2216068_1280.jpg"
-		//"https://example.com/image3.jpg",
         // Adicione mais URLs de imagens conforme necessário
         
     ];
@@ -40,7 +39,9 @@ export function Home(){
 			    source={require("../../assets/icon6.png")}
 				style={styles.logo}
 			/>*/}
-            <CarouselComponent  images={carouselImages} />
+			<View style={{marginTop: 14, flex: 1}}>
+            	<CarouselComponent  images={carouselImages} />
+			</View>
 			<Text style={styles.title}>{size} caracteres</Text>
 			<View style={styles.area}>
 				<Slider
@@ -104,5 +105,12 @@ const styles = StyleSheet.create({
 		color: "#FFF",
 		fontSize: 20,
 	},
-
+	header:{
+        backgroundColor: '#780c02',
+        paddingTop: 58,
+        paddingBottom: 14,
+        paddingLeft: 14,
+        paddingRight: 14,
+    },
+	
 })
