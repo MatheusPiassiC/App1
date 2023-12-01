@@ -9,7 +9,6 @@ const useStorage = () =>{
             console.log("Erro ao buscar", error)
             return[];
         }
-
     }
 
     //salvar um item

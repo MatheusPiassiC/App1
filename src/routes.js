@@ -11,67 +11,71 @@ import { Welcome } from './pages/welcome';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+//define as rotas do app
 const HomeTabs = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen
-        name="home"
-        component={Home}
-        options={{
-          tabBarShowLabel: true,
-          headerShown: false,
-          tabBarIcon: ({ focused, size, color }) => {
-            return focused ? (
-              <Ionicons size={size} color={color} name="home" />
-            ) : (
-              <Ionicons size={size} color={color} name="home-outline" />
-            );
-          },
-        }}
-      />
+	//rotas do tipo tab
+	return (
+		<Tab.Navigator>
+			<Tab.Screen
+				name="home"
+				component={Home}
+				options={{
+					tabBarShowLabel: true,
+					headerShown: false,
+					tabBarIcon: ({ focused, size, color }) => {
+						return focused ? (
+							<Ionicons size={size} color={color} name="home" />
+						) : (
+							<Ionicons size={size} color={color} name="home-outline" />
+						);
+					},
+				}}
+			/>
 
-      <Tab.Screen
-        name="passwords"
-        component={Passwords}
-        options={{
-          tabBarShowLabel: true,
-          headerShown: false,
-          tabBarIcon: ({ focused, size, color }) => {
-            return focused ? (
-              <Ionicons size={size} color={color} name="lock-closed" />
-            ) : (
-              <Ionicons size={size} color={color} name="lock-closed-outline" />
-            );
-          },
-        }}
-      />
-    </Tab.Navigator>
-  );
+			<Tab.Screen
+				name="passwords"
+				component={Passwords}
+				options={{
+					tabBarShowLabel: true,
+					headerShown: false,
+					tabBarIcon: ({ focused, size, color }) => {
+						return focused ? (
+							<Ionicons size={size} color={color} name="lock-closed" />
+						) : (
+							<Ionicons size={size} color={color} name="lock-closed-outline" />
+						);
+					},
+				}}
+			/>
+		</Tab.Navigator>
+	);
 };
 
 export function Routes() {
-    return (
-        <Stack.Navigator>
+	//rotas do tipo stack
+	//"hometabs" chama as rotas do tipo tab
+	return (
+		<Stack.Navigator>
 
 
-        <Stack.Screen
-            name="Welcome"
-            component={Welcome}
-            options={{ headerShown: false }}
-        />
+			<Stack.Screen
+				name="Welcome"
+				component={Welcome}
+				options={{ headerShown: false }}
+			/>
 
-        <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{ headerShown: false }}
-        />
+			<Stack.Screen
+				name="Login"
+				component={Login}
+				options={{ headerShown: false }}
+			/>
 
-        <Stack.Screen
-            name="hometabs"
-            component={HomeTabs}
-            options={{ headerShown: false }}
-        />
-      
-    </Stack.Navigator>
-    );
+			<Stack.Screen
+				name="hometabs"
+				component={HomeTabs}
+				options={{ headerShown: false }}
+			/>
+
+		</Stack.Navigator>
+	);
 }

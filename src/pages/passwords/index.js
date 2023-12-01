@@ -15,7 +15,6 @@ export function Passwords(){
         async function loadPasswords(){
             const passwords=await getItem("@pass")
             setListPasswords(passwords)
-
         }
         loadPasswords()
     }, [focuse])
@@ -24,7 +23,8 @@ export function Passwords(){
         const passwords = await removeItem('@pass', item)
         setListPasswords(passwords)
     }
-
+    //estrutura a página e a flatlist de senhas
+    //as senhas podem ser apagadas ao segurar o toque
     return(
         <SafeAreaView style={{flex:1, }}>
             <View style={styles.header}>
@@ -32,7 +32,7 @@ export function Passwords(){
             </View>
             <View style={styles.content}>
                 <FlatList
-                style={{flex: 1, paddingTop: 14,}}
+                    style={{flex: 1, paddingTop: 14,}}
                     data={listPasswords}
                     keyExtractor={(item) => String(item)}
                     renderItem={({item}) => <PasswordItem data= {item} removePassword={() => handleDeletePassword(item)}/>}

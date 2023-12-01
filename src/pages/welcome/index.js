@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 
 export function Welcome(){
     const navigation = useNavigation()
-
+    //contem as animações e o botão da tela "welcome"
     return(
         <View style={styles.container}>
             

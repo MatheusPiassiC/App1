@@ -1,10 +1,10 @@
 import { View, StyleSheet, Text, TouchableOpacity, Pressable } from "react-native";
 import useStorage from "../../hooks/UseStorage";
 import * as Clipboard from 'expo-clipboard'
-
+//modal chamado ao gerar senha
 export function ModalPassword({password, handleClose}){
     const {saveItem} = useStorage();
-
+    //salva a senha e copia
     async function handleCopyPassord(){
         await Clipboard.setStringAsync(password)
         await saveItem("@pass", password)
@@ -12,9 +12,7 @@ export function ModalPassword({password, handleClose}){
         alert("Senha salva com sucesso")
         handleClose()
     }
-
-
-    
+    //estruturação do modal
     return(
         <View style={styles.container}>
             <View style={styles.content}>
